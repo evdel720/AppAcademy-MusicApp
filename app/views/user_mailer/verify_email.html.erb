@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Verifying email</title>
+  </head>
+  <body>
+    <h1>Thanks for signing up our Music App!</h1>
+    <p>Hello, <%= @user.username %>.</p>
+    <p>Please verify your email with link below.</p>
+    <a href="<%= @url %>">Verify link</a>
+    <p>We hope you enjoy our site! Thanks!</p>
+  </body>
+</html>
