@@ -1,0 +1,30 @@
+<% action_url = (params["action"] == "new") ? albums_url : album_url %>
+<% button_text = (params["action"] == "new") ? "Create New Album" : "Update this Album" %>
+
+<form action="<%=action_url%>" method="post">
+  <%= auth_token %>
+  <%= "<input type='hidden' name='_method' value='patch'>".html_safe if params["action"] == "edit" %>
+  Album Title : <input type="text" name="album[title]" value="<%= album.title %>">
+  <br>
+  Select Band <select name="album[band_id]">
+    <% Band.all.each do |band| %>
+      <option value="<%= band.id %>" <%= "selected" if band.id == album.band_id%>><%= band.name %></option>
+    <% end %>
+  </select>
+  <br>
+  Select Album Type
+  <br>
+  Live
+  <input type="radio"
+    name="album[album_type]"
+    value="Live"
+    <%= "checked" if album.album_type == "Live"%>>
+
+  Studio
+  <input type="radio"
+    name="album[album_type]"
+    value="Studio"
+    <%= "checked" if album.album_type.nil? || album.album_type == "Studio"%>>
+  <br>
+  <input type="submit" value="<%= button_text%>">
+</form>

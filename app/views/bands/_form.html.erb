@@ -1,0 +1,9 @@
+<% action_url = (params["action"] == "new") ? bands_url : band_url %>
+<% button_text = (params["action"] == "new") ? "Create New Band" : "Update this Band" %>
+
+<form action="<%=action_url%>" method="post">
+  <%= auth_token %>
+  <%= "<input type='hidden' name='_method' value='patch'>".html_safe if params["action"] == "edit" %>
+  Band Name : <input type="text" name="band[name]" value="<%= band.name %>">
+  <input type="submit" value="<%= button_text%>">
+</form>

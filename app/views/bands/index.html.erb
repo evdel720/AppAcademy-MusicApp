@@ -1,0 +1,16 @@
+<h1>Music App</h1>
+
+<h3>Band lists</h3>
+<table>
+  <tr>
+    <th>
+      Band Name
+    </th>
+    <th>
+      Made At
+    </th>
+  </tr>
+  <%= render @bands %>
+</table>
+
+<%= button_to 'New Band', new_band_url, method: :get %>

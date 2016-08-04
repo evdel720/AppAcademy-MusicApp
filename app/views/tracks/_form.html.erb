@@ -1,0 +1,34 @@
+<% action_url = (params["action"] == "new") ? tracks_url : track_url %>
+<% button_text = (params["action"] == "new") ? "Create New Track" : "Update this Track" %>
+
+<form action="<%=action_url%>" method="post">
+  <%= auth_token %>
+  <%= "<input type='hidden' name='_method' value='patch'>".html_safe if params["action"] == "edit" %>
+  Track Title : <input type="text" name="track[title]" value="<%= track.title %>">
+  <br>
+  Select Album <select name="track[album_id]">
+    <% Album.all.each do |album| %>
+      <option value="<%= album.id %>" <%= "selected" if album.id == track.album_id%>><%= album.title %></option>
+    <% end %>
+  </select>
+  <br>
+  Select Track Type
+  <br>
+  Bonus
+  <input type="radio"
+    name="track[track_type]"
+    value="Bonus"
+    <%= "checked" if track.track_type == "Bonus"%>>
+
+  Regular
+  <input type="radio"
+    name="track[track_type]"
+    value="Regular"
+    <%= "checked" if track.track_type.nil? || track.track_type == "Regular"%>>
+  <br>
+
+  Lyrics : <textarea name="track[lyrics]"><%= @track.lyrics %></textarea>
+
+  <br>
+  <input type="submit" value="<%= button_text%>">
+</form>

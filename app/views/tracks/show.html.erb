@@ -1,0 +1,15 @@
+<h2><%= @track.title %></h2>
+<%= button_to 'Edit this track', edit_track_url, method: :get %>
+<%= button_to 'delete this track', track_url, method: :delete %>
+<table>
+  <tr>
+    <th>Album title</th>
+    <th>Track Type</th>
+    <th>Lyrics</th>
+  </tr>
+  <tr>
+    <td><%= @track.album.title %></td>
+    <td><%= @track.track_type %></td>
+    <td><%= @track.lyrics %></td>
+  </tr>
+</table>
