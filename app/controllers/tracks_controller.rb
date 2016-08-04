@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
   before_action :current_track, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
 
   def new
     @track = Track.new

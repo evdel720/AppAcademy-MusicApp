@@ -2,7 +2,9 @@ class User < ActiveRecord::Base
   attr_reader :password
   after_initialize :ensure_session_token
   validates :username, :session_token, :password_digest, presence: true
+  validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
+  has_many :notes
 
 
   def password=(password)

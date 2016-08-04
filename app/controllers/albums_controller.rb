@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   before_action :current_album, only: [:show, :edit, :update, :destroy]
-
+  before_action :require_login
+  
   def new
     @album = Album.new
   end

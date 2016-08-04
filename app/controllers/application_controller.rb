@@ -21,6 +21,22 @@ class ApplicationController < ActionController::Base
     redirect_to bands_url
   end
 
+  def require_not_login
+    if current_user
+      flash[:errors] ||= []
+      flash[:errors] << "You need to logout to do that."
+      redirect_to bands_url
+    end
+  end
+
+  def require_login
+    if current_user.nil?
+      flash[:errors] ||= []
+      flash[:errors] << "You need to login to do that."
+      redirect_to bands_url
+    end
+  end
+
   protected
   def user_params
     params.require(:user).permit(:username, :password)

@@ -1,6 +1,8 @@
 class BandsController < ApplicationController
   before_action :current_band, only: [:show, :edit, :update, :destroy]
 
+  before_action :require_login, except: [:index]
+
   def index
     @bands = Band.all
   end

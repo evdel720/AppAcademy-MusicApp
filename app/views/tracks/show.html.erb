@@ -1,6 +1,6 @@
 <h2><%= @track.title %></h2>
-<%= button_to 'Edit this track', edit_track_url, method: :get %>
-<%= button_to 'delete this track', track_url, method: :delete %>
+<%= button_to 'Edit this track', edit_track_url(@track), method: :get %>
+<%= button_to 'delete this track', track_url(@track), method: :delete %>
 <table>
   <tr>
     <th>Album title</th>
@@ -10,6 +10,15 @@
   <tr>
     <td><%= @track.album.title %></td>
     <td><%= @track.track_type %></td>
-    <td><%= @track.lyrics %></td>
+    <td><%= ugly_lyrics(@track.lyrics) %></td>
   </tr>
 </table>
+
+<%= render 'notes/form', track: @track %>
+
+<% unless @track.notes.empty? %>
+  <h3>Notes</h3>
+  <% @track.notes.each do |note| %>
+    <%= render 'notes/note', note: note %>
+  <% end %>
+<% end %>
